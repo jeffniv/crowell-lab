@@ -97,7 +97,7 @@ def airmass(lat, lon, time):
 def calc_afmesh_5min(xcoords, ycoords, month):
     '''calculates an array of lat, lon points in a time interval and returns a 3-D array, [time, lat, lon]'''
     time_intv = list([dt.datetime(2018, month, 15, 12)])
-    for i in arange(1,288):
+    for i in arange(1,192):
         time_intv.append(time_intv[i-1]+dt.timedelta(0,300))
     day_mesh = zeros([len(time_intv), len(ycoords), len(xcoords) ])
     for i in range(len(time_intv)):
@@ -183,7 +183,7 @@ def greedy_gc_mesh(blockset, universe_set, mesh, weights):
     ii=0 #flow control index, prevents infinite looping
     t=0 #time from start in hours
     print('Greedy Algorithm commenced' )
-    while( (universe.area > 490000000.)  and (ii<len(blockset)) ):
+    while( (universe.area > 490000000.)  and (ii<192 ):  #limit block set to 192 blocks ~ 16 hours of scan time
         if(universe.area > 500000000000.):   #if there is more area than a normal scan block size
             #partially apply args to calc_block_weight function
             weight_mesh_f = partial(calc_block_weight,
